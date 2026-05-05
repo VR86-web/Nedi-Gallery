@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <!--title detail-->
+    <div class="title-page"
+         style="background-image: url('{% static 'background_pics/you-can-do-it.jpg' %}');background-position: center center;background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-6 inner-title-page">
+                    <h1>Shop</h1>
+                    <p><span>Home</span> / Shop / Product List</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end title detail-->
+
+    <!--product list-->
+    <div class="container">
+    <div class="prodcut-list">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                <div class="row header-show-list">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <p>Showing 1–12 of 24 results</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <select class="float-right">
+                            <option>Default sorting</option>
+                            <option>Sort by average rating</option>
+                            <option>Sort by latest</option>
+                            <option>Sort by price: low to high</option>
+                            <option>Sort by price: high to low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row product">
+                    {% for product in products %}
+                        <div class="col-md-4 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-img-top">
+                                <a href="{% url 'single-product' product.slug %}" class="wp-post-image">
+                                    {% if product.picture %}
+                                        <img class="image-cover" src="{{ product.picture.url }}"
+                                             alt="product">
+                                    {% endif %}
+                                </a>
+
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title"><a
+                                        href="{% url 'category-products' product.category.slug %}">{{ product.category }}</a>
+                                </p>
+                                <p class="woocommerce-loop-product__title"><a
+                                        href="{% url 'single-product' product.slug %}">
+                                    {{ product.name }}</a></p>
+                                <span class="price">
+												<ins>
+													<span class="woocommerce-Price-amount amount">
+														<span class="woocommerce-Price-currencySymbol">€</span>{{ product.price }}
+													</span>
+												</ins>
+                                    </span>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                    </div>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#"> > </a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                <div class="content-blog-left">
+                    <div class="search-blog">
+                        <input type="text" placeholder="Search" class="float-left">
+                        <button class="btn float-right"><span class="lnr lnr-chevron-right"></span></button>
+                    </div>
+                    <div class="filter-price">
+                        <h2>Filter By Price</h2>
+
+                        <p></p>
+                        <span class="float-left">Price: $6 - $54</span>
+                        <button class="btn float-right">FILTER</button>
+                    </div>
+                    <div class="category-blog">
+                        <h2>Categories</h2>
+
+                        {% for category in categories %}
+                            <a href="{% url 'category-products' category.slug %}"> {{ category.name }}
+                                ({{ category.product_count }}) </a>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="tag-blog">
+                        <h2>Collections</h2>
+                    
+                        {% for collection in collections %}
+                            <div class="link-blog">
+                            <a href="{% url 'collection-products' collection.slug %}"> {{ collection.name }} </a>
+                            {% endfor %}    
+                            </div>
+                        </div>
+                        <div class=" lastest-img">
+                        <img src="https://via.placeholder.com/270x160.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end product list-->
+
+{% endblock %}
