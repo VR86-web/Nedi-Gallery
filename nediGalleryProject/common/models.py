@@ -15,5 +15,3 @@ class InstagramPics(models.Model):
 
     def __str__(self):
         return f"Instagram Pic {self.id}"
-
-

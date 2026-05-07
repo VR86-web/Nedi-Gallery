@@ -1,5 +1,6 @@
 from django.views.generic import ListView
 
+from nediGalleryProject.main.models import OwnerInfo
 from nediGalleryProject.product.models import Product, Collection
 
 
@@ -12,5 +13,6 @@ class IndexView(ListView):
     def get_context_data(self,*args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['collections'] = Collection.objects.all()
+        context['owners'] = OwnerInfo.objects.all()
 
         return context
