@@ -41,9 +41,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 MY_APPS = [
-    'nediGalleryProject.common',
-    'nediGalleryProject.main',
-    'nediGalleryProject.product',
+    'nediGalleryProject.common.apps.CommonConfig',
+    'nediGalleryProject.main.apps.MainConfig',
+    'nediGalleryProject.product.apps.ProductConfig',
 ]
 
 INSTALLED_APPS = [

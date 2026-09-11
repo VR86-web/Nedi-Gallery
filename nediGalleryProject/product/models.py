@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 
 class Product(models.Model):
@@ -45,6 +46,10 @@ class Product(models.Model):
         null=True,
     )
 
+    published = models.DateTimeField(
+        default=timezone.now
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )
@@ -57,6 +62,12 @@ class Product(models.Model):
         unique=True,
         blank=True,
     )
+
+    class Meta:
+        ordering = ['-published']
+        indexes = [
+            models.Index(fields=['-published']),
+        ]
 
     def save(self, *args, **kwargs):
         if not self.slug:
