@@ -4,6 +4,8 @@ from django.urls import path
 
 from nediGalleryProject.product.views import WhatWeOfferView, ProductListView, SingleProductView
 
+app_name = 'product'
+
 urlpatterns = [
     path('what_we_offer/', WhatWeOfferView.as_view(), name='what-we-offer'),
     path('product_list/', ProductListView.as_view(), name='product-list'),

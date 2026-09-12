@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Product(models.Model):
@@ -69,6 +70,12 @@ class Product(models.Model):
             models.Index(fields=['-published']),
         ]
 
+    def get_absolute_url(self):
+
+        return reverse('product:single-product', kwargs={
+            'slug': self.slug,
+        })
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
@@ -112,6 +119,10 @@ class Collection(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("product:collection-products", kwargs={"collection_slug": self.slug})
+    
+
 
 class Category(models.Model):
 
@@ -132,3 +143,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("product:category-products", kwargs={"category_slug": self.slug})
+    

@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('nediGalleryProject.main.urls')),
     path('common/', include('nediGalleryProject.common.urls')),
-    path('product/', include('nediGalleryProject.product.urls')),
+    path('product/', include('nediGalleryProject.product.urls', namespace='product')),
 ]
 
 if settings.DEBUG:
