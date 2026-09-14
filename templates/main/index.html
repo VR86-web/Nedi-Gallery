@@ -19,7 +19,6 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-8 col-8 content-slide">
                                         <h2>{{ collection.name }} </h2>
-                                        <p>{{ collection.description }}</p>
                                        <a href="{{ collection.get_absolute_url }}">shop now</a>
                                     </div>
                                 </div>
@@ -43,18 +42,15 @@
     <div class="container">
         <div class="row cosmetic">
             <div class="col-md-6 bg-cosmetic">
-                <img src="{% static 'background_pics/rhondak-native-florida-folk-artist-_Yc7OtfFn-0-unsplash.jpg' %}"
-                     alt="">
+                {% if art_description.picture %}
+                    <img src="{{ art_description.picture.url }}" alt="{{ art_description.name }}">
+                {% endif %}
             </div>
             <div class="col-md-6">
                 <div class="inner-cosmetic">
-                    <h2>#Genuine Cosmetics</h2>
-                    <h3>Customers Satisfaction</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
+                    <h2>{{ art_description.name }}</h2>
+                    <h3>{{ art_description.header }}</h3>
+                    <p>{{ art_description.description }}</p>
                 </div>
             </div>
         </div>
@@ -152,16 +148,7 @@
                                                 class="fas fa-star"></i><i class="fas fa-star"></i>
                                         </p>
                                         <p style="padding-bottom: 100px;">
-                                            There are many variations of passages of Lorem Ipsum available, but the
-                                            majority
-                                            have
-                                            suffered alteration
-                                            in some form, by injected humour, or randomised words which don't look even
-                                            slightly
-                                            believable. If you are
-                                            going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                                            anything
-                                            embarrassing hidden in the middle of text.
+                                            {{owner.owner_description}}
                                         </p>
                                         {% endfor %}
                                     </div>

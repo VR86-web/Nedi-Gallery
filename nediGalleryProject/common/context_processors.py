@@ -1,4 +1,4 @@
-from nediGalleryProject.common.models import InstagramPics
+from nediGalleryProject.common.models import InstagramPics, ArtDescription
 
 
 def instagram_pics(request):
@@ -6,4 +6,11 @@ def instagram_pics(request):
 
     return {
         'instagram_pics': pics
+    }
+
+def art_description(request):
+    description = ArtDescription.objects.first()
+
+    return {
+        'art_description': description
     }
