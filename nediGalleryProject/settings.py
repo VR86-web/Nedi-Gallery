@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'nediGalleryProject.common.context_processors.instagram_pics',
+                'nediGalleryProject.common.context_processors.art_description'
             ],
         },
     },
