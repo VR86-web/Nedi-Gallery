@@ -1,122 +1,260 @@
+
 {% extends 'base.html' %}
 
 {% load static %}
 
 {% block content %}
 
-    <!--title detail-->
+    <!-- title detail -->
     <div class="title-page"
-         style="background-image: url('{% static 'background_pics/backgroundPic.webp' %}');background-position: center center;background-size: cover;">
+         style="background-image: url('{% static 'background_pics/backgroundPic.webp' %}');
+                background-position: center center;
+                background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class=" col-md-6 inner-title-page">
+                <div class="col-md-6 inner-title-page">
                     <h1>Shop</h1>
                     <p><span>Home</span> / Shop / Product List</p>
                 </div>
             </div>
         </div>
     </div>
-    <!--end title detail-->
+    <!-- end title detail -->
 
-    <!--product list-->
+
+    <!-- product list -->
     <div class="container">
-    <div class="prodcut-list">
-        <div class="row">
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                <div class="row header-show-list">
-                    <div class="col-md-6 col-sm-12 col-12">
-                        <p>Showing 1–12 of 24 results</p>
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-12">
-                        <select class="float-right">
-                            <option>Default sorting</option>
-                            <option>Sort by average rating</option>
-                            <option>Sort by latest</option>
-                            <option>Sort by price: low to high</option>
-                            <option>Sort by price: high to low</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row product">
-                    {% for product in products %}
-                        <div class="col-md-4 col-sm-6 col-12">
-                        <div class="card">
-                            <div class="card-img-top">
-                                <a href="{{ product.get_absolute_url }}" class="wp-post-image">
-                                    {% if product.picture %}
-                                        <img class="image-cover" src="{{ product.picture.url }}"
-                                             alt="product">
-                                    {% endif %}
-                                </a>
+        <div class="prodcut-list">
 
-                            </div>
-                            <div class="card-body">
-                                <p class="card-title"><a
-                                        href="{{category.get_absolute_url}}">{{ product.category }}</a>
-                                </p>
-                                <p class="woocommerce-loop-product__title"><a
-                                        <a href="{{ product.get_absolute_url }}">
-                                    {{ product.name }}</a></p>
-                                <span class="price">
-												<ins>
-													<span class="woocommerce-Price-amount amount">
-														<span class="woocommerce-Price-currencySymbol">€</span>{{ product.price }}
-													</span>
-												</ins>
-                                    </span>
-                            </div>
+            <div class="row">
+
+                <!-- PRODUCTS -->
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+
+                    <!-- Header -->
+                    <div class="row header-show-list">
+
+                        <div class="col-md-6 col-sm-12 col-12">
+                            <p>
+                                Showing
+                                {{ page_obj.start_index }}–{{ page_obj.end_index }}
+                                of {{ paginator.count }} results
+                            </p>
                         </div>
 
-                    {% endfor %}
-                    </div>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#"> > </a></li>
-                    </ul>
-                </div>
+                        <div class="col-md-6 col-sm-12 col-12">
+                            <select class="float-right">
+                                <option>Default sorting</option>
+                                <option>Sort by average rating</option>
+                                <option>Sort by latest</option>
+                                <option>Sort by price: low to high</option>
+                                <option>Sort by price: high to low</option>
+                            </select>
+                        </div>
 
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                <div class="content-blog-left">
-                    <div class="search-blog">
-                        <input type="text" placeholder="Search" class="float-left">
-                        <button class="btn float-right"><span class="lnr lnr-chevron-right"></span></button>
                     </div>
-                    <div class="filter-price">
-                        <h2>Filter By Price</h2>
+                    <!-- End Header -->
 
-                        <p></p>
-                        <span class="float-left">Price: $6 - $54</span>
-                        <button class="btn float-right">FILTER</button>
-                    </div>
-                    <div class="category-blog">
-                        <h2>Categories</h2>
 
-                        {% for category in categories %}
-                            <a href="{{category.get_absolute_url}}"> {{ category.name }}
-                                ({{ category.product_count }}) </a>
+                    <!-- Product cards -->
+                    <div class="row product">
+
+                        {% for product in products %}
+
+                            <div class="col-md-4 col-sm-6 col-12">
+
+                                <div class="card">
+
+                                    <div class="card-img-top">
+
+                                        <a href="{{ product.get_absolute_url }}"
+                                           class="wp-post-image">
+
+                                            {% if product.picture %}
+                                                <img class="image-cover"
+                                                     src="{{ product.picture.url }}"
+                                                     alt="{{ product.name }}">
+                                            {% endif %}
+
+                                        </a>
+
+                                    </div>
+
+
+                                    <div class="card-body">
+
+                                        <p class="card-title">
+                                            <a href="{{ product.category.get_absolute_url }}">
+                                                {{ product.category }}
+                                            </a>
+                                        </p>
+
+
+                                        <p class="woocommerce-loop-product__title">
+                                            <a href="{{ product.get_absolute_url }}">
+                                                {{ product.name }}
+                                            </a>
+                                        </p>
+
+
+                                        <span class="price">
+                                            <ins>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <span class="woocommerce-Price-currencySymbol">
+                                                        €
+                                                    </span>
+                                                    {{ product.price }}
+                                                </span>
+                                            </ins>
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% empty %}
+
+                            <p>No products found.</p>
+
                         {% endfor %}
 
                     </div>
+                    <!-- End Product cards -->
 
-                    <div class="tag-blog">
-                        <h2>Collections</h2>
-                    
-                        {% for collection in collections %}
-                            <div class="link-blog">
-                            <a href="{{collection.get_absolute_url}}"> {{ collection.name }} </a>
-                            {% endfor %}    
-                            </div>
-                        </div>
-                        <div class=" lastest-img">
-                        <img src="https://via.placeholder.com/270x160.jpg" alt="">
-                        </div>
-                    </div>
+
+                    <!-- Pagination -->
+                    {% if is_paginated %}
+
+                        <ul class="pagination justify-content-center">
+
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="?page={{ page_obj.previous_page_number }}">
+                                        &lt;
+                                    </a>
+                                </li>
+                            {% endif %}
+
+
+                            {% for num in page_obj.paginator.page_range %}
+
+                                <li class="page-item
+                                    {% if page_obj.number == num %}active{% endif %}">
+
+                                    <a class="page-link"
+                                       href="?page={{ num }}">
+                                        {{ num }}
+                                    </a>
+
+                                </li>
+
+                            {% endfor %}
+
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="?page={{ page_obj.next_page_number }}">
+                                        &gt;
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                        </ul>
+
+                    {% endif %}
+                    <!-- End Pagination -->
+
                 </div>
+                <!-- END PRODUCTS -->
+
+
+                <!-- SIDEBAR -->
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+
+                    <div class="content-blog-left">
+
+                        <!-- Search -->
+                        <div class="search-blog">
+
+                            <input type="text"
+                                   placeholder="Search"
+                                   class="float-left">
+
+                            <button class="btn float-right">
+                                <span class="lnr lnr-chevron-right"></span>
+                            </button>
+
+                        </div>
+
+
+                        <!-- Filter price -->
+                        <div class="filter-price">
+
+                            <h2>Filter By Price</h2>
+
+                            <p></p>
+
+                            <span class="float-left">
+                                Price: $6 - $54
+                            </span>
+
+                            <button class="btn float-right">
+                                FILTER
+                            </button>
+
+                        </div>
+
+
+                        <!-- Categories -->
+                        <div class="category-blog">
+
+                            <h2>Categories</h2>
+
+                            {% for category in categories %}
+
+                                <a href="{{ category.get_absolute_url }}">
+                                    {{ category.name }}
+                                    ({{ category.product_count }})
+                                </a>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <!-- Collections -->
+                        <div class="tag-blog">
+
+                            <h2>Collections</h2>
+
+                            <div class="link-blog">
+
+                                {% for collection in collections %}
+
+                                    <a href="{{ collection.get_absolute_url }}">
+                                        {{ collection.name }}
+                                    </a>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END SIDEBAR -->
+
             </div>
+
         </div>
     </div>
-    <!--end product list-->
+    <!-- end product list -->
 
 {% endblock %}
+
