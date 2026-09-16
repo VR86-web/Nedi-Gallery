@@ -57,71 +57,93 @@
     </div>
     <!--end cosmetic-->
 
-    <!--Product out-->
     <div class="container">
-        <div class="product-out">
-            <div class="title">
-                <h2 class="text-center">Product Our</h2>
-            </div>
-            <div id="demo" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" class="active"></li>
-                    <li data-target="#demo" data-slide-to="1"></li>
-                    <li data-target="#demo" data-slide-to="2"></li>
-                </ul>
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-    <div class="carousel-item active">
-        <div class="row product">
 
-            {% for product in products %}
+    <div class="product-out">
 
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card">
+        <div class="title">
+            <h2 class="text-center">Product Our</h2>
+        </div>
 
-                    <div class="card-img-top">
-                        <a href="{{ product.get_absolute_url }}">
-                            {% if product.picture %}
-                                <img class="image-cover"
-                                     src="{{ product.picture.url }}"
-                                     alt="{{ product.name }}">
-                            {% endif %}
-                        </a>
-                    </div>
+        <div class="product-slider">
 
-                    <div class="card-body">
-                        <p class="card-title">
-                            <a href="{{ category.get_absolute_url }}">
-                                {{ product.category }}
-                            </a>
-                        </p>
+            <button class="slider-btn prev" type="button">
+                &#10094;
+            </button>
 
-                        <p class="woocommerce-loop-product__title">
-                            <a href="{{ product.get_absolute_url }}">
-                                {{ product.name }}
-                            </a>
-                        </p>
+            <div class="product-window">
 
-                        <span class="price">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">€</span>
-                                {{ product.price }}
-                            </span>
-                        </span>
-                    </div>
+                <div class="product-track">
+
+                    {% for product in products %}
+
+                        <div class="product-slide">
+
+                            <div class="card">
+
+                                <div class="card-img-top">
+
+                                    <a href="{{ product.get_absolute_url }}">
+
+                                        {% if product.picture %}
+                                            <img class="image-cover"
+                                                 src="{{ product.picture.url }}"
+                                                 alt="{{ product.name }}">
+                                        {% endif %}
+
+                                    </a>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <p class="card-title">
+                                        <a href="{{ product.category.get_absolute_url }}">
+                                            {{ product.category }}
+                                        </a>
+                                    </p>
+
+                                    <p class="woocommerce-loop-product__title">
+                                        <a href="{{ product.get_absolute_url }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </p>
+
+                                    <span class="price">
+
+                                        <span class="woocommerce-Price-amount amount">
+
+                                            <span class="woocommerce-Price-currencySymbol">
+                                                €
+                                            </span>
+
+                                            {{ product.price }}
+
+                                        </span>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
 
                 </div>
+
             </div>
 
-            {% endfor %}
+            <button class="slider-btn next" type="button">
+                &#10095;
+            </button>
 
         </div>
+
     </div>
+
 </div>
-            </div>
-        </div>
-        <!--end Product out-->
         <!-- code review home-->
         <div class="container-fluid">
             <div class="row review-homepage" style=" background-image: url('https://via.placeholder.com/1920x640.jpg/f5f2f2');
@@ -163,5 +185,33 @@
         <!--end code review home-->
 
     </div>
+
+    <script>
+    const track = document.querySelector('.product-track');
+    const nextButton = document.querySelector('.slider-btn.next');
+    const prevButton = document.querySelector('.slider-btn.prev');
+
+    let position = 0;
+
+    nextButton.addEventListener('click', function () {
+
+        const products = document.querySelectorAll('.product-slide');
+
+        if (position < products.length - 4) {
+            position++;
+            track.style.transform = `translateX(-${position * 25}%)`;
+        }
+
+    });
+
+    prevButton.addEventListener('click', function () {
+
+        if (position > 0) {
+            position--;
+            track.style.transform = `translateX(-${position * 25}%)`;
+        }
+
+    });
+</script>
 
 {% endblock %}
