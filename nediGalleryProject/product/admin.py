@@ -17,5 +17,5 @@ class CollectionAdmin(ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'description', 'category_picture')
 

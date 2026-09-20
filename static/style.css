@@ -672,8 +672,14 @@ Assigned to: Physcode
 	}
 }
 
+.title-page {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .inner-title-page {
-	padding:    100px 0;
+	padding:    180px 0;
 	text-align: left;
 }
 
@@ -2357,6 +2363,7 @@ i {
 .product {
 	margin-top: 80px;
 }
+
 
 .product-slider {
     display: flex;

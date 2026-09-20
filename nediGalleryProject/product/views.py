@@ -31,6 +31,26 @@ class ProductListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        category_slug = self.kwargs.get('category_slug')
+        collection_slug = self.kwargs.get('collection_slug')
+
+        if category_slug:
+            category = Category.objects.get(slug=category_slug)
+            context['page_name'] = category.name.capitalize()
+            context['description'] = category.description
+            context['background_picture'] = category.category_picture
+
+        elif collection_slug:
+            collection = Collection.objects.get(slug=collection_slug)
+            context['page_name'] = collection.name
+            context['description'] = collection.description
+            context['background_picture'] = collection.picture
+
+        else:
+            context['page_name'] = 'Shop'
+            context['description'] = None
+            context['background_picture'] = None
+
         context['categories'] = Category.objects.annotate(
             product_count=Count('products')
         )

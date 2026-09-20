@@ -130,6 +130,17 @@ class Category(models.Model):
         max_length=50,
     )
 
+    description = models.TextField(
+            blank=True,
+            null=True,
+    )
+
+    category_picture = models.ImageField(
+    upload_to='category_backgrounds/',
+    null=True,
+    blank=True
+    )
+
     slug = models.SlugField(
         unique=True,
         blank=True,
