@@ -6,7 +6,7 @@ from nediGalleryProject.common.models import InstagramPics, ArtDescription
 @admin.register(InstagramPics)
 class InstagramPicsAdmin(admin.ModelAdmin):
 
-    list_display = ('picture',)
+    list_display = ('picture', 'url')
 
 @admin.register(ArtDescription)
 class ArtDescriptionAdmin(admin.ModelAdmin):

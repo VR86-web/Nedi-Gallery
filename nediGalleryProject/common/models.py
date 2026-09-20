@@ -9,6 +9,11 @@ class InstagramPics(models.Model):
         blank=True,
     )
 
+    url = models.URLField(
+        blank=True,
+        null=True
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True,
     )
