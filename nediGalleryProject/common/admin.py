@@ -11,4 +11,4 @@ class InstagramPicsAdmin(admin.ModelAdmin):
 @admin.register(ArtDescription)
 class ArtDescriptionAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'header', 'description', 'picture')
+    list_display = ('name', 'header', 'picture')

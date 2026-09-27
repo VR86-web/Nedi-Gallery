@@ -12,7 +12,7 @@ class ProductAdmin(ModelAdmin):
 
 @admin.register(Collection)
 class CollectionAdmin(ModelAdmin):
-    list_display = ('name', 'description', 'picture',)
+    list_display = ('name', 'description', 'collection_name_description', 'picture',)
 
 
 @admin.register(Category)

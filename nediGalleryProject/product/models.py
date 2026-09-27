@@ -94,6 +94,12 @@ class Collection(models.Model):
         null=True,
     )
 
+    collection_name_description = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
     description = models.TextField(
         blank=True,
         null=True,
