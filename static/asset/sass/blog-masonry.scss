@@ -7,6 +7,9 @@
     margin: 15px 0;
     width: 100%;
     border-radius: 0;
+    &.blog-list-card {
+      height: 100%;
+    }
     img {
       padding: 15px;
     }
@@ -24,6 +27,12 @@
       h5 {
         position: relative;
         margin-bottom: 40px;
+        &.blog-list-title {
+          min-height: 1.2em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
         a {
           margin: 0;
           font-size: 22px;
@@ -68,6 +77,9 @@
         background: white;
         position: relative;
       }
+      &.blog-list-meta {
+        margin-top: auto;
+      }
       .icon-share{
         position: absolute;
         left: 5%;
@@ -98,6 +110,20 @@
 
   ul {
     margin-top: 30px;
+  }
+}
+@media all and (max-width: 767px) {
+  .content-masonry {
+    .row > [class*="col-"] {
+      margin-bottom: 16px;
+    }
+
+    .card .card-body.blog-list-meta span {
+      white-space: nowrap;
+      padding: 0;
+      border-right: 0;
+      font-size: 12px;
+    }
   }
 }
 .blog-homepage3{

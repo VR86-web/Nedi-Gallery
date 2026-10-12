@@ -42,7 +42,7 @@
                     <div class="menu">
                         <ul>
                             <li><a href="{% url 'product:product-list' %}">Shop</a></li>
-                            <li><a href="blog/blog-masonry.html">blog</a></li>
+                            <li><a href="{% url 'blog:blog-list' %}">blog</a></li>
                             <li><a href="{% url 'about-us' %}">About Us</a></li>
                             <li><a href="{% url 'contact-us' %}">contact</a></li>
                         </ul>
@@ -144,7 +144,7 @@
         <div class="menu-mobile">
             <ul>
                 <li><a href="{% url 'product:product-list' %}">Shop</a></li>
-                <li><a href="blog/blog-masonry.html">blog</a></li>
+                <li><a href="{% url 'blog:blog-list' %}">blog</a></li>
                 <li><a href="{% url 'about-us' %}">About Us</a></li>
                 <li><a href="{% url 'contact-us' %}">contact</a></li>
             </ul>

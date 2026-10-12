@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('nediGalleryProject.main.urls')),
     path('common/', include('nediGalleryProject.common.urls')),
     path('product/', include('nediGalleryProject.product.urls', namespace='product')),
+    path('blog/', include('nediGalleryProject.blog.urls', namespace='blog')),
 ]
 
 if settings.DEBUG:

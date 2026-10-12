@@ -35,7 +35,11 @@ DEBUG = env.bool("DEBUG", default=False)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.ngrok-free.dev',
+]
 
 
 # Application definition
@@ -44,6 +48,7 @@ MY_APPS = [
     'nediGalleryProject.common.apps.CommonConfig',
     'nediGalleryProject.main.apps.MainConfig',
     'nediGalleryProject.product.apps.ProductConfig',
+    'nediGalleryProject.blog.apps.BlogConfig',
 ]
 
 INSTALLED_APPS = [

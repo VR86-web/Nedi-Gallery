@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!--title page-->
+<div class="title-page"
+     style="background-image: url('https://via.placeholder.com/1920x345.jpg/f5f2f2/e8e8e7');background-position: center center;background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 inner-title-page">
+                <h1>Blog List</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end title page-->
+
+<!--content blog masonry-->
+<div class="container">
+    <div class="content-masonry">
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+                    <div class="card blog-list-card h-100">
+                        {% if blog.picture %}
+                            <img src="{{ blog.picture.url }}" class="card-img-top" alt="{{ blog.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title blog-list-title">
+                                <a href="{{ blog.get_absolute_url }}">{{ blog.title|truncatechars:32 }}</a>
+                            </h5>
+                            <p class="card-text">{{ blog.content|truncatewords:30 }}</p>
+                        </div>
+                        <div class="card-body blog-list-meta">
+                            <span>{{ blog.published|date:"jS F Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p>No blog posts found.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item{% if page_obj.number == num %} active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+
+<!--end content blog masonry-->
+
+{% endblock %}
