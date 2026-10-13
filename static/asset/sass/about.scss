@@ -263,6 +263,17 @@
         }
       }
     }
+
+    .content-inner-about-center {
+      margin-bottom: 40px;
+      padding: 0 25%;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+      }
+    }
   }
   .intro-about {
     .progress-intro-about {
@@ -271,6 +282,21 @@
 
       h2 {
         font-size: 35px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 360px) {
+  .inner-about {
+    .content-inner-about-center {
+      margin-bottom: 40px;
+      padding: 0 25%;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
       }
     }
   }
@@ -304,6 +330,16 @@
           top: 0;
           left: 90%;
         }
+      }
+    }
+
+    .content-inner-about-center {
+      margin-bottom: 40px;
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
       }
     }
   }

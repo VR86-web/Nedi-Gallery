@@ -1,4 +1,4 @@
-from nediGalleryProject.common.models import InstagramPics, ArtDescription
+from nediGalleryProject.common.models import AboutInnerContentLeft, AboutInnerContentRight, InstagramPics, ArtDescription
 
 
 def instagram_pics(request):
@@ -13,4 +13,18 @@ def art_description(request):
 
     return {
         'art_description': description
+    }
+
+def about_inner_content_left(request):
+    content = AboutInnerContentLeft.objects.first()
+
+    return {
+        'about_inner_content_left': content
+    }
+
+def about_inner_content_right(request):
+    content = AboutInnerContentRight.objects.first()
+
+    return {
+        'about_inner_content_right': content
     }

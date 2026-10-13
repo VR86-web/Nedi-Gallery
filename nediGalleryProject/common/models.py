@@ -43,3 +43,35 @@ class ArtDescription(models.Model):
 
     def __str__(self):
         return self.name or f"Art Description {self.id}"
+
+class AboutInnerContentLeft(models.Model):
+
+    header = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+    )
+
+    content = models.TextField(
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.header or f"About Inner Content Left {self.id}"
+
+class AboutInnerContentRight(models.Model):
+
+    header = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+    )
+
+    content = models.TextField(
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.header or f"About Inner Content Right {self.id}"
