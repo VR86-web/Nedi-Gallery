@@ -1,0 +1,8 @@
+New message from the RANEDDI contact form
+
+Name: {{ name }}
+Email: {{ email }}
+Submitted: {{ submitted_at|date:"F j, Y" }} at {{ submitted_at|time:"g:i A T" }}
+
+Message:
+{{ message }}

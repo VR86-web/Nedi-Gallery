@@ -100,6 +100,12 @@ EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER)
+ENQUIRY_RECIPIENT_EMAIL = env(
+    'ENQUIRY_RECIPIENT_EMAIL', default='contact@raneddi.com'
+)
+ENQUIRY_REPLY_TO_EMAIL = env(
+    'ENQUIRY_REPLY_TO_EMAIL', default='contact@raneddi.com'
+)
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

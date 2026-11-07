@@ -1,0 +1,6 @@
+Hello {{ name }},
+
+Thank you for contacting RANEDDI. We have received your message and will respond as soon as possible.
+
+Kind regards,
+The RANEDDI Team

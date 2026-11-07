@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<body>
+    <h1>New message from the RANEDDI contact form</h1>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Submitted:</strong> {{ submitted_at|date:"F j, Y" }} at {{ submitted_at|time:"g:i A T" }}</p>
+    <p><strong>Message:</strong></p>
+    <p>{{ message|linebreaksbr }}</p>
+</body>
+</html>
