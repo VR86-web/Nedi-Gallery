@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<body>
+    <h1>Product enquiry (not a confirmed order)</h1>
+    <p><strong>Product:</strong> {{ product.name }}</p>
+    <p><strong>Displayed price:</strong> €{{ product_price }}</p>
+    <p><strong>Customer name:</strong> {{ name }}</p>
+    <p><strong>Customer email:</strong> {{ email }}</p>
+    <p><strong>Message:</strong></p>
+    <p>{{ message|linebreaksbr }}</p>
+    <p>This enquiry is not a confirmed order or purchase.</p>
+</body>
+</html>

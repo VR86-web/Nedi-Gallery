@@ -58,10 +58,12 @@
                             </a>
                     </div>
                     <div>
-                        
                         <div class="btn-group">
-                            <a href="#" class="btn add-to-cart">ADD TO CART<p><i
-                                    class="fas fa-cart-plus"></i></p></a>
+                            <button type="button" class="btn add-to-cart" data-toggle="modal"
+                                    data-target="#productEnquiryModal">
+                                ENQUIRE ABOUT THIS PRODUCT
+                                <p><i class="fas fa-envelope"></i></p>
+                            </button>
                         </div>
                     </div>
                     <div class="information">
@@ -85,6 +87,82 @@
         </div>
     </div>
     <!--end product detail-->
+
+    {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'warning' %}alert-warning{% else %}alert-danger{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="modal fade" id="productEnquiryModal" tabindex="-1" role="dialog"
+         aria-labelledby="productEnquiryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{% url 'product:product-enquiry' slug=product.slug %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="productEnquiryModalLabel">Interested in this product?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Send us your enquiry and our team will get back to you shortly.</p>
+                        <p><strong>{{ product.name }} | €{{ product.price }}</strong></p>
+                        {{ form.website }}
+                        {% for error in form.non_field_errors %}
+                            <p class="text-danger" role="alert">{{ error }}</p>
+                        {% endfor %}
+                        <div class="form-group">
+                            <label for="id_name">Your Name</label>
+                            <input class="form-control" type="text" name="name" id="id_name"
+                                   maxlength="100" value="{{ form.name.value|default_if_none:'' }}" required>
+                            {% for error in form.name.errors %}
+                                <p class="text-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Your Email</label>
+                            <input class="form-control" type="email" name="email" id="id_email"
+                                   maxlength="254" value="{{ form.email.value|default_if_none:'' }}" required>
+                            {% for error in form.email.errors %}
+                                <p class="text-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_message">Message</label>
+                            <textarea class="form-control" name="message" id="id_message"
+                                      maxlength="5000" rows="4" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                            {% for error in form.message.errors %}
+                                <p class="text-danger" role="alert">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% for message in messages %}
+                            <p class="{% if message.tags == 'warning' %}text-warning{% else %}text-danger{% endif %}"
+                               role="alert">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                        <button type="submit" class="btn btn-primary">SEND ENQUIRY</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!--end product related-->
 
+{% endblock %}
+
+{% block extra_js %}
+    {% if show_enquiry_modal %}
+        <script>
+            jQuery(function ($) {
+                $('#productEnquiryModal').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

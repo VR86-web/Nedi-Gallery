@@ -1,0 +1,9 @@
+Product enquiry (not a confirmed order)
+
+Product: {{ product.name }}
+Displayed price: €{{ product_price }}
+Customer name: {{ name }}
+Customer email: {{ email }}
+
+Message:
+{{ message }}

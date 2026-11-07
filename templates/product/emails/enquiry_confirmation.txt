@@ -1,0 +1,9 @@
+Hello {{ name }},
+
+Thank you for your enquiry about {{ product.name }} (displayed price: €{{ product_price }}).
+Our team has received your message and will contact you shortly.
+
+This enquiry is not a confirmed order or purchase. Any purchase and payment arrangements can be discussed directly with our team by email.
+
+Kind regards,
+The RANEDDI Team
